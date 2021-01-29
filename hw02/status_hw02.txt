@@ -1,0 +1,43 @@
+Please fill in answers to the questions below:
+
+
+1. What's your name?
+Kriti Gurubacharya
+
+2. What hostname did you deploy to?
+gkriti.art
+
+3. What's the link to your repository on github with your code?
+https://github.com/kriti-g/CS4550/tree/master/hw02
+
+4. How many HTML / CSS tutorial exercises did you do?
+3
+
+5. How comfortable do you feel with HTML and CSS now?
+Fairly
+
+6. How many JS tutorial exercises did you do?
+2
+
+7. How comfortable do you feel with JS now?
+Fairly
+
+8. Do all of your HTML pages pass the W3C HTML validator?
+(https://validator.w3.org/)
+yes
+
+9. Which parts of this assignment did you have trouble with, if any?
+The calculator, a little bit
+
+
+
+
+And here's a list of tasks for grading comments. Just leave this here:
+ - Task 1
+ - Task 2
+ - Task 3
+ - Task 4
+ - Task 5
+ - Task 6
+ - Task 7
+ - Task 8
