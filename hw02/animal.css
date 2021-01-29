@@ -1,0 +1,27 @@
+@charset "UTF-8";
+body {
+  display: block;
+  margin: 3% 6%;
+}
+
+.column {
+  float: left;
+  width: 50%;
+}
+
+.row::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+@media screen and (max-width:600px) {
+  .column {
+    width: 100%;
+  }
+}
+
+table, th, td {
+  border: 1px solid black;
+  width: 60%;
+}

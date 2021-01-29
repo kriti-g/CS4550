@@ -1,0 +1,47 @@
+@charset "UTF-8";
+body {
+  display: block;
+  margin: 3% 6%;
+}
+
+.column {
+  float: left;
+  width: 50%;
+}
+
+.row::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+@media screen and (max-width:600px) {
+  .column {
+    width: 100%;
+  }
+}
+
+table {
+  border: 1px solid black;
+  width: 40%;
+}
+
+.display {
+  padding: 15px;
+  text-align: center;
+}
+
+.button {
+  background-color: Plum;
+  border: none;
+  color: DarkSlateGray;
+  text-align: center;
+  display: inline-block;
+  width: 100%;
+  padding: 15px;
+  border-radius: 4px;
+}
+
+.num-key {
+  background-color: SkyBlue;
+}
