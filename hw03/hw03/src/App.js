@@ -1,6 +1,19 @@
 import logo from './logo.svg';
 import './App.css';
 
+function GameOver({reset}) {
+  return (
+    <div className="App">
+      <h1>Game Over!</h1>
+      <p>
+        <button onClick={reset}>
+          Reset
+        </button>
+      </p>
+    </div>
+  );
+}
+
 function App() {
   return (
     <div className="App">
