@@ -1,4 +1,6 @@
 import logo from './logo.svg';
+import { useState } from 'react';
+import { uniq, bad_guesses, word_view, lives_left } from './bullfuncs';
 import './App.css';
 
 function GameOver({reset}) {
@@ -15,22 +17,54 @@ function GameOver({reset}) {
 }
 
 function App() {
+  const [secret, _setSecret] = useState("elephant");
+  const [guesses, setGuesses] = useState([]);
+  // fixme: guesses should be a set
+  const [text, setText] = useState("");
+
+  let view = word_view(secret, guesses);
+  let bads = bad_guesses(secret, guesses);
+  let lives = lives_left(secret, guesses);
+
+  function updateText(ev) {
+    let vv = ev.target.value;
+    let cc = vv[vv.length - 1];
+    setText(cc);
+  }
+
+  function guess() {
+    let ng = uniq(guesses.concat(text));
+    console.log("ng", ng);
+    setGuesses(ng);
+  }
+
+  function keyPress(ev) {
+    if (ev.key == "Enter") {
+      guess();
+    }
+  }
+
+  if (lives <= 0) {
+    return <GameOver reset={() => setGuesses([])} />;
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Word: {view.join(' ')}</h1>
+      <h1>Bads: {bads.join(' ')}</h1>
+      <h1>Lives: {lives}</h1>
+      <p>
+        <input type="text"
+               value={text}
+               onChange={updateText}
+               onKeyPress={keyPress} />
+        <button onClick={guess}>Guess</button>
+      </p>
+      <p>
+        <button onClick={() => setGuesses([])}>
+          Reset
+        </button>
+      </p>
     </div>
   );
 }
