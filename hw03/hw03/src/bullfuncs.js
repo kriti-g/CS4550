@@ -18,8 +18,7 @@ export function uniq(xs) {
 }
 
 export function bad_guesses(number, guesses) {
-    let letters = number.split('');
-    return uniq(guesses.filter((x) => !letters.includes(x)));
+    return uniq(guesses.filter((x) => x === number);
 }
 
 export function lives_left(number, guesses) {
