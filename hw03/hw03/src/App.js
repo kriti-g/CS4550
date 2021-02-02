@@ -41,7 +41,7 @@ class GuessTable extends React.Component {
   render() {
     return (
       <tbody>
-        {this.props.items.map(guess => (
+        {this.props.guesses.map(guess => (
           <tr>
             <td>{guess.value}</td>
             <td>{guess.bulls}B{guess.cows}C</td>
