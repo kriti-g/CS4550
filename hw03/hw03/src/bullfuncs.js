@@ -14,14 +14,29 @@ export function randNum() {
   return genArr;
 }
 
+export function passesChecks(text){
+  if (Number.isNaN(text)) {
+    if (text.length === 4) {
+      if (text[0] !== "0"){
+        let set = uniq(text.split(''));
+        if (set.length === 4){
+          return true;
+        } else {
+          alert("All digits must be unique.");
+        }
+      } else {
+        alert("First digit cannot be 0.");
+      }
+    } else {
+      alert("Need exactly 4 digits.");
+    }
+  } else {
+    alert("Numbers only please.");
+  }
+  return false;
+}
+
+
 export function uniq(xs) {
     return Array.from(new Set(xs));
-}
-
-export function bad_guesses(number, guesses) {
-    return uniq(guesses.filter((x) => x === number));
-}
-
-export function lives_left(number, guesses) {
-    return 8 - bad_guesses(number, guesses).length;
 }

@@ -1,7 +1,27 @@
-import logo from './logo.svg';
-import { useState } from 'react';
-import { uniq, bad_guesses, lives_left, randNum } from './bullfuncs';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { uniq, randNum, passesChecks } from './bullfuncs';
 import './App.css';
+
+/*
+class Guess extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      value: null,
+      bulls: null,
+      cows: null
+    }
+  }
+  render() {
+    return (
+      <tr className="guess">
+        <td>{this.state.value}</td>
+        <td>{this.state.bulls}B{this.state.cows}C</td>
+      </tr>
+    )
+  }
+}
 
 function GameOver({reset}) {
   return (
@@ -15,84 +35,90 @@ function GameOver({reset}) {
     </div>
   );
 }
+*/
 
-function App() {
-  const [number, setNumber] = useState(randNum());
-  const [guesses, setGuesses] = useState([]);
-  // fixme: guesses should be a set
-  const [text, setText] = useState("");
+class GuessTable extends React.Component {
+  render() {
+    return (
+      <tbody>
+        {this.props.items.map(guess => (
+          <tr>
+            <td>{guess.value}</td>
+            <td>{guess.bulls}B{guess.cows}C</td>
+          </tr>
+        ))}
+      </tbody>
+    );
+  }
+}
 
-  let bads = bad_guesses(number, guesses);
-  let lives = lives_left(number, guesses);
+class BullsAndCows extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { number: "1234", guesses: [], text: ''};
+    this.guess = this.guess.bind(this);
+    this.updateText = this.updateText.bind(this);
+    this.keyPress = this.keyPress.bind(this);
+  }
 
-  function updateText(ev) {
+  render() {
+    return (
+      <div className="BullsAndCows">
+      <p>
+      <input type="text"
+      value={text}
+      onChange={updateText}
+      onKeyPress={keyPress}/>
+      <button onClick={guess}>Guess</button>
+      </p>
+      <table>
+      <thead>
+      <tr>
+      <th>Guess</th>
+      <th>Result</th>
+      </tr>
+      </thead>
+      <GuessTable guesses={this.state.guesses}/>
+      </table>
+      <p>
+      <button onClick={() => setGuesses([])}>
+      Reset
+      </button>
+      </p>
+      </div>
+    );
+  }
+
+  resetGame(){
+    let num = randNum();
+    this.setState({number: num, guesses: [], text: ''});
+  }
+
+  updateText(ev) {
     let vv = ev.target.value;
     let cc = vv.substring(0, Math.min(vv.length, 4));
-    setText(cc);
+    this.setState({ text: cc });
   }
 
-  function guess() {
-    if (isNaN(text)) {
-      if (text.length === 4) {
-        if (text[0] !== "0"){
-          let set = new Set();
-          for (let ch of text.split('')){
-            set.add(ch);
-          }
-          if (set.size === 4){
-            let ng = uniq(guesses.concat(text));
-            console.log("ng", ng);
-            setGuesses(ng);
-          } else {
-            alert("All digits must be unique.");
-          }
-        } else {
-          alert("First digit cannot be 0.");
-        }
-      } else {
-        alert("Need exactly 4 digits.");
-      }
-    } else {
-      alert("Numbers only please.");
-    }
-  }
-
-  function keyPress(ev) {
+  keyPress(ev) {
     if (ev.key === "Enter") {
       guess();
     }
   }
 
-  if (lives <= 0) {
-    return <GameOver reset={() => setGuesses([])} />;
+  guess() {
+    if (passesChecks(this.state.text)){
+      const newGuess = {
+        value: this.state.text,
+        bulls: 0,
+        cows: 0
+      }
+      let ng = uniq(this.state.guesses.concat(newGuess));
+      console.log("ng", ng);
+      this.setState({ guesses: ng });
+    }
   }
 
-  return (
-    <div className="App">
-    <h1>Bads: {bads.join(' ')}</h1>
-    <h1>Lives: {lives}</h1>
-    <p>
-    <input type="text"
-    value={text}
-    onChange={updateText}
-    onKeyPress={keyPress} />
-    <button onClick={guess}>Guess</button>
-    </p>
-    <table>
-    <thead>
-    <tr>
-    <th>Guess</th>
-    <th>Result</th>
-    </tr>
-    </thead>
-    </table>
-    <p>
-    <button onClick={() => setGuesses([])}>
-    Reset
-    </button>
-    </p>
-    </div>
-  );
 }
 
-export default App;
+export default BullsAndCows;
