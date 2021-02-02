@@ -18,7 +18,7 @@ export function uniq(xs) {
 }
 
 export function bad_guesses(number, guesses) {
-    return uniq(guesses.filter((x) => x === number);
+    return uniq(guesses.filter((x) => x === number));
 }
 
 export function lives_left(number, guesses) {
