@@ -15,7 +15,6 @@ export function randNum() {
 }
 
 export function passesChecks(text){
-  console.log(text);
   if (!Number.isNaN(parseInt(text))) {
     if (text.length === 4) {
       if (text[0] !== "0"){
@@ -40,7 +39,7 @@ export function passesChecks(text){
 export function findBC(number, text){
   let cows = 0;
   let bulls = 0;
-  for(let num in text){
+  for(let num in text.split('')){
     if (number.split('').includes(num)){
       console.log(num + " is in " + number.split(''))
       cows++;

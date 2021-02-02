@@ -42,7 +42,7 @@ class GuessTable extends React.Component {
     return (
       <tbody>
         {this.props.guesses.map(guess => (
-          <tr>
+          <tr id={guess.key}>
             <td>{guess.value}</td>
             <td>{guess.bulls}B{guess.cows}C</td>
           </tr>
@@ -110,6 +110,7 @@ class BullsAndCows extends React.Component {
     if (passesChecks(this.state.text)){
       let bullscows = findBC(this.state.number, this.state.text);
       const newGuess = {
+        key: this.state.guesses.length,
         value: this.state.text,
         bulls: bullscows[0],
         cows: bullscows[1]
