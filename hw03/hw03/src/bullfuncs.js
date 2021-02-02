@@ -42,6 +42,7 @@ export function findBC(number, text){
   let bulls = 0;
   for(let num in text){
     if (number.split('').includes(num)){
+      console.log(num + " is in " + number.split(''))
       cows++;
     }
   }
@@ -49,6 +50,7 @@ export function findBC(number, text){
     if(number[i] === text[i]){
       bulls++;
       cows--;
+      console.log("Bulls: " + bulls + " Cows: " + cows)
     }
   }
   return [bulls, cows];
