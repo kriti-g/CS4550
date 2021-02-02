@@ -108,10 +108,11 @@ class BullsAndCows extends React.Component {
 
   guess() {
     if (passesChecks(this.state.text)){
+      let bullscows = findBC(this.state.number, this.state.text);
       const newGuess = {
         value: this.state.text,
-        bulls: 0,
-        cows: 0
+        bulls: bullscows[0],
+        cows: bullscows[1]
       }
       let ng = uniq(this.state.guesses.concat(newGuess));
       console.log("ng", ng);

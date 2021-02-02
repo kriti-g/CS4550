@@ -11,7 +11,7 @@ export function randNum() {
     numArr.splice(randi, 1);
   }
   console.log(genArr);
-  return genArr;
+  return genArr.join("");
 }
 
 export function passesChecks(text){
@@ -37,6 +37,22 @@ export function passesChecks(text){
   return false;
 }
 
+export function findBC(number, text){
+  let cows = 0;
+  let bulls = 0;
+  for(let num in text){
+    if (number.split('').includes(num)){
+      cows++;
+    }
+  }
+  for (let i = 0; i < 4; i++){
+    if(number[i] === text[i]){
+      bulls++;
+      cows--;
+    }
+  }
+  return [bulls, cows];
+}
 
 export function uniq(xs) {
     return Array.from(new Set(xs));
