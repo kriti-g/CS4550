@@ -39,17 +39,11 @@ export function passesChecks(text){
 export function findBC(number, text){
   let cows = 0;
   let bulls = 0;
-  for(let num in text.split('')){
-    if (number.split('').includes(num)){
-      console.log(num + " is in " + number.split(''))
-      cows++;
-    }
-  }
-  for (let i = 0; i < 4; i++){
+  for(let i = 0; i < 4; i++){
     if(number[i] === text[i]){
       bulls++;
-      cows--;
-      console.log("Bulls: " + bulls + " Cows: " + cows)
+    } else if (number.split('').includes(text[i])){
+      cows++;
     }
   }
   return [bulls, cows];
