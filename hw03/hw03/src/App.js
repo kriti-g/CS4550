@@ -66,10 +66,10 @@ class BullsAndCows extends React.Component {
       <div className="BullsAndCows">
       <p>
       <input type="text"
-      value={text}
-      onChange={updateText}
-      onKeyPress={keyPress}/>
-      <button onClick={guess}>Guess</button>
+      value={this.state.text}
+      onChange={this.updateText}
+      onKeyPress={this.keyPress}/>
+      <button onClick={this.guess}>Guess</button>
       </p>
       <table>
       <thead>
@@ -81,7 +81,7 @@ class BullsAndCows extends React.Component {
       <GuessTable guesses={this.state.guesses}/>
       </table>
       <p>
-      <button onClick={() => setGuesses([])}>
+      <button>
       Reset
       </button>
       </p>
@@ -102,7 +102,7 @@ class BullsAndCows extends React.Component {
 
   keyPress(ev) {
     if (ev.key === "Enter") {
-      guess();
+      this.guess();
     }
   }
 
