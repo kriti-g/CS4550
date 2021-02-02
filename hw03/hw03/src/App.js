@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { uniq, randNum, passesChecks } from './bullfuncs';
+import { uniq, randNum, passesChecks, findBC } from './bullfuncs';
 import './App.css';
 
 /*
