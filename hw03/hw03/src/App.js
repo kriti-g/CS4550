@@ -16,7 +16,7 @@ function App() {
 
   function updateText(ev) {
     let vv = ev.target.value;
-    let cc = vv[0:Math.min(3, vv.length - 1)];
+    let cc = vv.substring(0, Math.min(vv.length, 4));
     setText(cc);
   }
 
