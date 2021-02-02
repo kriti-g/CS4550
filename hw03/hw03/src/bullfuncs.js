@@ -2,8 +2,8 @@ export function randNum() {
   let numArr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
   let genArr = [];
   let randInd = Math.floor(Math.random() * 9);
-  genArr.push(numArr[rand]);
-  numArr.splice(rand, 1);
+  genArr.push(numArr[randInd]);
+  numArr.splice(randInd, 1);
   numArr.push(0);
   for (var i = 0; i < 3; i++){
     let randi = Math.floor(Math.random() * numArr.length);
@@ -17,11 +17,11 @@ export function uniq(xs) {
     return Array.from(new Set(xs));
 }
 
-export function bad_guesses(secret, guesses) {
-    let letters = secret.split('');
+export function bad_guesses(number, guesses) {
+    let letters = number.split('');
     return uniq(guesses.filter((x) => !letters.includes(x)));
 }
 
-export function lives_left(secret, guesses) {
-    return 8 - bad_guesses(secret, guesses).length;
+export function lives_left(number, guesses) {
+    return 8 - bad_guesses(number, guesses).length;
 }

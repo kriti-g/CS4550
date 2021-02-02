@@ -1,9 +1,20 @@
 import logo from './logo.svg';
 import { useState } from 'react';
-import { uniq, bad_guesses, word_view, lives_left } from './bullfuncs';
+import { uniq, bad_guesses, lives_left, randNum } from './bullfuncs';
 import './App.css';
 
-
+function GameOver({reset}) {
+  return (
+    <div className="App">
+      <h1>Game Over!</h1>
+      <p>
+        <button onClick={reset}>
+          Reset
+        </button>
+      </p>
+    </div>
+  );
+}
 
 function App() {
   const [number, setNumber] = useState(randNum());
@@ -11,8 +22,8 @@ function App() {
   // fixme: guesses should be a set
   const [text, setText] = useState("");
 
-  let bads = bad_guesses(secret, guesses);
-  let lives = lives_left(secret, guesses);
+  let bads = bad_guesses(number, guesses);
+  let lives = lives_left(number, guesses);
 
   function updateText(ev) {
     let vv = ev.target.value;
