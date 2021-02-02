@@ -15,7 +15,7 @@ export function randNum() {
 }
 
 export function passesChecks(text){
-  if (Number.isNaN(text)) {
+  if (Number.isNaN(parseInt(text)) {
     if (text.length === 4) {
       if (text[0] !== "0"){
         let set = uniq(text.split(''));
