@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { uniq, randNum, passesChecks, findBC } from './bullfuncs';
+import { uniq, randNum, passesChecks, findBC, hasWon } from './bullfuncs';
 import './App.css';
 
 function GameOver(props) {
@@ -52,33 +52,41 @@ class BullsAndCows extends React.Component {
     this.guess = this.guess.bind(this);
     this.updateText = this.updateText.bind(this);
     this.keyPress = this.keyPress.bind(this);
+    this.resetGame = this.resetGame.bind(this);
   }
 
   render() {
-
-    return (
-      <div className="BullsAndCows">
-      <p>
+    let input = (<div className="BullsAndCows">
+    <p>
       <input type="text"
       value={this.state.text}
       onChange={this.updateText}
       onKeyPress={this.keyPress}/>
       <button onClick={this.guess}>Guess</button>
-      </p>
-      <table>
+    </p>
+    <table>
       <thead>
-      <tr>
-      <th>Guess</th>
-      <th>Result</th>
-      </tr>
+        <tr>
+          <th>Guess</th>
+          <th>Result</th>
+        </tr>
       </thead>
-      <GuessTable guesses={this.state.guesses}/>
-      </table>
-      <p>
+        <GuessTable guesses={this.state.guesses}/>
+    </table>
+    <p>
       <button>
       Reset
       </button>
-      </p>
+    </p>
+    </div>);
+    if (hasWon(this.state.guesses, this.state.number)) {
+      input = (<Victory number={this.state.number} onClick={this.resetGame}/>);
+    } else if (this.state.guesses.length > 7) {
+      input = (<GameOver number={this.state.number} onClick={this.resetGame}/>);
+    }
+    return (
+      <div className="container">
+      {body}
       </div>
     );
   }

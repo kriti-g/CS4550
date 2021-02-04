@@ -14,6 +14,11 @@ export function randNum() {
   return genArr.join("");
 }
 
+export function hasWon(guesses, number){
+  return guesses[guesses.length - 1].value === number;
+}
+
+
 export function passesChecks(text){
   if (!Number.isNaN(parseInt(text))) {
     if (text.length === 4) {
