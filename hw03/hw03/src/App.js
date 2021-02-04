@@ -56,7 +56,7 @@ class BullsAndCows extends React.Component {
   }
 
   render() {
-    let input = (<div className="BullsAndCows">
+    let body = (<div className="BullsAndCows">
     <p>
       <input type="text"
       value={this.state.text}
@@ -80,9 +80,9 @@ class BullsAndCows extends React.Component {
     </p>
     </div>);
     if (hasWon(this.state.guesses, this.state.number)) {
-      input = (<Victory number={this.state.number} onClick={this.resetGame}/>);
+      body = (<Victory number={this.state.number} onClick={this.resetGame}/>);
     } else if (this.state.guesses.length > 7) {
-      input = (<GameOver number={this.state.number} onClick={this.resetGame}/>);
+      body = (<GameOver number={this.state.number} onClick={this.resetGame}/>);
     }
     return (
       <div className="container">
