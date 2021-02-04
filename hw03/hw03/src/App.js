@@ -47,8 +47,7 @@ function GuessTable(props) {
 
 
 function BullsAndCows() {
-  let num = randNum();
-  const [number, setNumber] = useState(num);
+  const [number, setNumber] = useState(randNum());
   const [guesses, setGuesses] = useState([]);
   const [text, setText] = useState('');
 
