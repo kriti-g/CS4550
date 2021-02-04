@@ -118,7 +118,6 @@ class BullsAndCows extends React.Component {
         cows: bullscows[1]
       }
       let ng = uniq(this.state.guesses.concat(newGuess));
-      console.log("ng", ng);
       this.setState({ guesses: ng });
     }
   }
