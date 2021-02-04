@@ -48,7 +48,8 @@ function GuessTable(props) {
 class BullsAndCows extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { number: "1234", guesses: [], text: ''};
+    let num = randNum();
+    this.state = { number: num, guesses: [], text: ''};
     this.guess = this.guess.bind(this);
     this.updateText = this.updateText.bind(this);
     this.keyPress = this.keyPress.bind(this);
@@ -57,6 +58,7 @@ class BullsAndCows extends React.Component {
 
   render() {
     let body = (<div className="BullsAndCows">
+    <h1>Bulls and Cows</h1>
     <p>
       <input type="text"
       value={this.state.text}
@@ -74,7 +76,7 @@ class BullsAndCows extends React.Component {
         <GuessTable guesses={this.state.guesses}/>
     </table>
     <p>
-      <button>
+      <button onClick={this.resetGame}>
       Reset
       </button>
     </p>
