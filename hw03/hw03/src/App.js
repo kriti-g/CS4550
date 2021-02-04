@@ -116,6 +116,7 @@ function BullsAndCows() {
   } else if (guesses.length > 7) {
     body = (<GameOver number={number} onClick={resetGame}/>);
   }
+  console.log("toguess: "+ number);
   return (
     <div className="container">
     {body}
