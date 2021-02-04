@@ -3,45 +3,39 @@ import ReactDOM from 'react-dom';
 import { uniq, randNum, passesChecks, findBC } from './bullfuncs';
 import './App.css';
 
-/*
-class Guess extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      value: null,
-      bulls: null,
-      cows: null
-    }
-  }
-  render() {
-    return (
-      <tr className="guess">
-        <td>{this.state.value}</td>
-        <td>{this.state.bulls}B{this.state.cows}C</td>
-      </tr>
-    )
-  }
-}
-
-function GameOver({reset}) {
+function GameOver(props) {
   return (
-    <div className="App">
+    <div>
     <h1>Game Over!</h1>
+    <p>The number was {props.number}.</p>
+    <p>Play again?</p>
     <p>
-    <button onClick={reset}>
+    <button onClick={props.onClick}>
     Reset
     </button>
     </p>
     </div>
   );
 }
-*/
 
-class GuessTable extends React.Component {
-  render() {
+function Victory(props) {
+  return (
+      <div>
+        <h1>You won!</h1>
+        <p>The number was {props.number}.</p>
+        <p>Play again?</p>
+        <p>
+          <button onClick={props.onClick}>
+          Reset
+          </button>
+        </p>
+      </div>);
+}
+
+function GuessTable(props) {
     return (
       <tbody>
-        {this.props.guesses.map(guess => (
+        {props.guesses.map(guess => (
           <tr id={guess.key}>
             <td>{guess.value}</td>
             <td>{guess.bulls}B{guess.cows}C</td>
@@ -49,7 +43,6 @@ class GuessTable extends React.Component {
         ))}
       </tbody>
     );
-  }
 }
 
 class BullsAndCows extends React.Component {
@@ -62,6 +55,7 @@ class BullsAndCows extends React.Component {
   }
 
   render() {
+
     return (
       <div className="BullsAndCows">
       <p>
@@ -120,7 +114,6 @@ class BullsAndCows extends React.Component {
       this.setState({ guesses: ng });
     }
   }
-
 }
 
 export default BullsAndCows;
