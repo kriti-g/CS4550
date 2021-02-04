@@ -15,6 +15,9 @@ export function randNum() {
 }
 
 export function hasWon(guesses, number){
+  if (guesses.length < 1) {
+    return false;
+  }
   return guesses[guesses.length - 1].value === number;
 }
 
