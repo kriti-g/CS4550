@@ -93,7 +93,7 @@ function BullsAndCows() {
     value={text}
     onChange={updateText}
     onKeyPress={keyPress}/>
-    <button onClick={this.guess}>Guess</button>
+    <button onClick={guess}>Guess</button>
   </p>
   <table>
     <thead>
