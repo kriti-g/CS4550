@@ -10,7 +10,7 @@ export function randNum() {
     genArr.push(numArr[randi]);
     numArr.splice(randi, 1);
   }
-  console.log(genArr);
+  console.log("number = " + genArr)
   return genArr.join("");
 }
 
