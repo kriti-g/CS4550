@@ -52,8 +52,7 @@ function BullsAndCows() {
   const [text, setText] = useState('');
 
   function resetGame(){
-    let num = randNum();
-    setNumber(num);
+    setNumber(randNum());
     setGuesses([]);
     setText('');
   }
