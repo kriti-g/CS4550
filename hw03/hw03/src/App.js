@@ -1,11 +1,14 @@
 import React from 'react';
+import 'bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import { useState, useEffect } from 'react';
 import { uniq, randNum, passesChecks, findBC, hasWon } from './bullfuncs';
 import './App.css';
 
 function GameOver(props) {
   return (
-    <div>
+    <div className="row">
+    <div class="col-sm-6">
     <h1>Game Over!</h1>
     <p>The number was {props.number}.</p>
     <p>Play again?</p>
@@ -15,12 +18,14 @@ function GameOver(props) {
     </button>
     </p>
     </div>
+    </div>
   );
 }
 
 function Victory(props) {
   return (
-      <div>
+    <div className="row">
+    <div class="col-sm-6">
         <h1>You won!</h1>
         <p>The number was {props.number}.</p>
         <p>Play again?</p>
@@ -29,7 +34,8 @@ function Victory(props) {
           Reset
           </button>
         </p>
-      </div>);
+    </div>
+    </div>);
 }
 
 function GuessTable(props) {
@@ -84,7 +90,9 @@ function BullsAndCows() {
     }
   }
 
-  let body = (<div className="BullsAndCows">
+  let body = (
+  <div className="row">
+  <div class="col-sm-6">
   <h1>Bulls and Cows</h1>
   <p>
     <input type="text"
@@ -107,99 +115,29 @@ function BullsAndCows() {
     Reset
     </button>
   </p>
+  </div>
+  <div class="col-sm-6">
+  <p>
+    When you guess, the game will tell you how many bulls (B) and cows (C) you
+    got in that guess. A bull means the right number in the right place, and a
+     cow means the right number in the wrong place. Good luck!
+  </p>
+  </div>
   </div>);
 
   if (hasWon(guesses, number)) {
-    body = (<Victory number={number} onClick={resetGame}/>);
+    body = (
+      <Victory number={number} onClick={resetGame}/>);
   } else if (guesses.length > 7) {
-    body = (<GameOver number={number} onClick={resetGame}/>);
+    body = (
+      <GameOver number={number} onClick={resetGame}/>);
   }
   console.log("toguess: "+ number);
   return (
-    <div className="container">
+    <div class="container">
     {body}
     </div>
   );
 }
-//
-// class BullsAndCows extends React.Component {
-//   constructor(props) {
-//     super(props);
-//     let num = randNum();
-//     this.state = { number: num, guesses: [], text: ''};
-//     this.guess = this.guess.bind(this);
-//     this.updateText = this.updateText.bind(this);
-//     this.keyPress = this.keyPress.bind(this);
-//     this.resetGame = this.resetGame.bind(this);
-//   }
-//
-//   render() {
-//     let body = (<div className="BullsAndCows">
-//     <h1>Bulls and Cows</h1>
-//     <p>
-//       <input type="text"
-//       value={this.state.text}
-//       onChange={this.updateText}
-//       onKeyPress={this.keyPress}/>
-//       <button onClick={this.guess}>Guess</button>
-//     </p>
-//     <table>
-//       <thead>
-//         <tr>
-//           <th>Guess</th>
-//           <th>Result</th>
-//         </tr>
-//       </thead>
-//         <GuessTable guesses={this.state.guesses}/>
-//     </table>
-//     <p>
-//       <button onClick={this.resetGame}>
-//       Reset
-//       </button>
-//     </p>
-//     </div>);
-//     if (hasWon(this.state.guesses, this.state.number)) {
-//       body = (<Victory number={this.state.number} onClick={this.resetGame}/>);
-//     } else if (this.state.guesses.length > 7) {
-//       body = (<GameOver number={this.state.number} onClick={this.resetGame}/>);
-//     }
-//     return (
-//       <div className="container">
-//       {body}
-//       </div>
-//     );
-//   }
-//
-//   resetGame(){
-//     let num = randNum();
-//     this.setState({number: num, guesses: [], text: ''});
-//   }
-//
-//   updateText(ev) {
-//     let vv = ev.target.value;
-//     let cc = vv.substring(0, Math.min(vv.length, 4));
-//     this.setState({ text: cc });
-//   }
-//
-//   keyPress(ev) {
-//     if (ev.key === "Enter") {
-//       this.guess();
-//     }
-//   }
-//
-//   guess() {
-//     if (passesChecks(this.state.text)){
-//       let bullscows = findBC(this.state.number, this.state.text);
-//       const newGuess = {
-//         key: this.state.guesses.length,
-//         value: this.state.text,
-//         bulls: bullscows[0],
-//         cows: bullscows[1]
-//       }
-//       let ng = uniq(this.state.guesses.concat(newGuess));
-//       this.setState({ guesses: ng, text:'' });
-//     }
-//   }
-// }
 
 export default BullsAndCows;
