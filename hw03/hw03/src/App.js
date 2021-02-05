@@ -50,14 +50,6 @@ function GuessTable(props) {
     );
 }
 
-function InputControls({guess, resetGame}) {
-
-
-  return (
-
-  );
-}
-
 function BullsAndCows() {
   const [number, setNumber] = useState(randNum());
   const [guesses, setGuesses] = useState([]);
