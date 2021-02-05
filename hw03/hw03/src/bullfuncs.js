@@ -20,7 +20,6 @@ export function hasWon(guesses, number){
   return guesses[guesses.length - 1].value === number;
 }
 
-
 export function passesChecks(text){
   if (!Number.isNaN(parseInt(text))) {
     if (text.length === 4) {
@@ -53,8 +52,4 @@ export function findBC(number, text){
     }
   }
   return [bulls, cows];
-}
-
-export function uniq(xs) {
-    return Array.from(new Set(xs));
 }

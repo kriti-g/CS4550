@@ -1,10 +1,9 @@
-import React from 'react';
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import * as Toastr from 'toastr';
 import 'toastr/build/toastr.min.css';
-import { useState, useEffect } from 'react';
-import { uniq, randNum, passesChecks, findBC, hasWon } from './bullfuncs';
+import { useState } from 'react';
+import { randNum, passesChecks, findBC, hasWon } from './bullfuncs';
 import './App.css';
 
 function GameOver(props) {
@@ -111,8 +110,8 @@ function BullsAndCows() {
     </button>
   </div>
   </div>
-  <table class="table-striped">
-    <thead class="thead-light">
+  <table class="table table-striped">
+    <thead class="thead thead-light">
       <tr>
         <th>Guess</th>
         <th>Result</th>
