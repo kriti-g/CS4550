@@ -101,8 +101,8 @@ function BullsAndCows() {
     onKeyPress={keyPress}/>
     <button onClick={guess}>Guess</button>
   </p>
-  <table>
-    <thead>
+  <table class="table-striped">
+    <thead class="thead-light">
       <tr>
         <th>Guess</th>
         <th>Result</th>
@@ -134,7 +134,7 @@ function BullsAndCows() {
   }
   console.log("toguess: "+ number);
   return (
-    <div class="container">
+    <div class="container p-3 my-3">
     {body}
     </div>
   );
