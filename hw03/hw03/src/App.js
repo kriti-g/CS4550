@@ -13,7 +13,6 @@ function GameOver(props) {
     <brk/>
     <p>The number was {props.number}.</p>
     <p>Play again?</p>
-    <br/>
     <button class="btn btn-success" onClick={props.onClick} type="button">
       Reset
     </button>
@@ -30,7 +29,6 @@ function Victory(props) {
         <br/>
         <p>The number was {props.number}.</p>
         <p>Play again?</p>
-        <br/>
         <button class="btn btn-success" onClick={props.onClick} type="button">
           Reset
         </button>
@@ -122,8 +120,11 @@ function BullsAndCows() {
   <div class="col-sm-4">
   <p>
     When you guess, the game will tell you how many bulls (B) and cows (C) you
-    got in that guess. \nA bull means the right number in the right place, and a
-     cow means the right number in the wrong place. Good luck!
+    got in that guess. A bull means the right number in the right place, and a
+     cow means the right number in the wrong place.
+  </p>
+  <p>
+     Good luck!
   </p>
   </div>
   </div>);
