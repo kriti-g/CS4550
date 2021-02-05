@@ -1,7 +1,8 @@
 import React from 'react';
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import toastr from 'toastr';
+import * as Toastr from 'toastr';
+import 'toastr/build/toastr.min.css';
 import { useState, useEffect } from 'react';
 import { uniq, randNum, passesChecks, findBC, hasWon } from './bullfuncs';
 import './App.css';
@@ -87,7 +88,7 @@ function BullsAndCows() {
       setGuesses(ng);
       setText('');
     } else {
-      toastr.error(check.message);
+      Toastr.error(check.message);
     }
   }
 
