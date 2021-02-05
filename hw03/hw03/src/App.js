@@ -93,14 +93,22 @@ function BullsAndCows() {
   let body = (
   <div class="row">
   <div class="col-sm-6">
-  <h1>Bulls and Cows</h1>
-  <p>
-    <input type="text"
+  <h1 class="display-3">Bulls and Cows</h1>
+  <div class="input-group mb-3">
+  <input type="text" class="form-control"
     value={text}
     onChange={updateText}
-    onKeyPress={keyPress}/>
-    <button onClick={guess}>Guess</button>
-  </p>
+    onKeyPress={keyPress}
+    placeholder="Type a four-digit number here"/>
+  </div>
+  <div class="input-group-append">
+    <button class="btn btn-outline-danger" onClick={resetGame} type="button">
+      Reset
+    </button>
+    <button class="btn btn-success" onClick={guess} type="button">
+      Guess
+    </button>
+  </div>
   <table class="table-striped">
     <thead class="thead-light">
       <tr>
@@ -110,11 +118,6 @@ function BullsAndCows() {
     </thead>
       <GuessTable guesses={guesses}/>
   </table>
-  <p>
-    <button onClick={resetGame}>
-    Reset
-    </button>
-  </p>
   </div>
   <div class="col-sm-6">
   <p>
