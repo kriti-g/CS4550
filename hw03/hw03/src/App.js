@@ -10,13 +10,13 @@ function GameOver(props) {
     <div class="row">
     <div class="col-sm-6">
     <h1>Game Over!</h1>
+    <brk/>
     <p>The number was {props.number}.</p>
     <p>Play again?</p>
-    <p>
+    <br/>
     <button class="btn btn-success" onClick={props.onClick} type="button">
       Reset
     </button>
-    </p>
     </div>
     </div>
   );
@@ -27,13 +27,13 @@ function Victory(props) {
     <div class="row">
     <div class="col-sm-6">
         <h1>You won!</h1>
+        <br/>
         <p>The number was {props.number}.</p>
         <p>Play again?</p>
-        <p>
+        <br/>
         <button class="btn btn-success" onClick={props.onClick} type="button">
           Reset
         </button>
-        </p>
     </div>
     </div>);
 }
