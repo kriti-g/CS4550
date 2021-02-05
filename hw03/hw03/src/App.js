@@ -7,7 +7,7 @@ import './App.css';
 
 function GameOver(props) {
   return (
-    <div className="row">
+    <div class="row">
     <div class="col-sm-6">
     <h1>Game Over!</h1>
     <p>The number was {props.number}.</p>
@@ -24,7 +24,7 @@ function GameOver(props) {
 
 function Victory(props) {
   return (
-    <div className="row">
+    <div class="row">
     <div class="col-sm-6">
         <h1>You won!</h1>
         <p>The number was {props.number}.</p>
@@ -91,7 +91,7 @@ function BullsAndCows() {
   }
 
   let body = (
-  <div className="row">
+  <div class="row">
   <div class="col-sm-6">
   <h1>Bulls and Cows</h1>
   <p>
