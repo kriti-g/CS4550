@@ -53,3 +53,8 @@ export function findBC(number, text){
   }
   return [bulls, cows];
 }
+
+// This function was taken from Nat Tuck's hangman code.
+function uniq(xs) {
+    return Array.from(new Set(xs));
+}
