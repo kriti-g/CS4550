@@ -1,7 +1,7 @@
 import React from 'react';
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import 'toastr';
+import toastr from 'toastr';
 import { useState, useEffect } from 'react';
 import { uniq, randNum, passesChecks, findBC, hasWon } from './bullfuncs';
 import './App.css';
@@ -51,6 +51,16 @@ function GuessTable(props) {
 }
 
 function InputControls({guess, resetGame}) {
+
+
+  return (
+
+  );
+}
+
+function BullsAndCows() {
+  const [number, setNumber] = useState(randNum());
+  const [guesses, setGuesses] = useState([]);
   const [text, setText] = useState('');
 
   function updateText(ev) {
@@ -61,32 +71,9 @@ function InputControls({guess, resetGame}) {
 
   function keyPress(ev) {
     if (ev.key === "Enter") {
-      guess(text);
+      guess();
     }
   }
-
-  return (
-      <div class="input-group mb-3">
-      <input type="text" class="form-control"
-        value={text}
-        onChange={updateText}
-        onKeyPress={keyPress}
-        placeholder="Type a four-digit number here"/>
-      <div class="input-group-append">
-        <button class="btn btn-outline-danger" onClick={resetGame} type="button">
-          Reset
-        </button>
-        <button class="btn btn-success" onClick={guess(text)} type="button">
-          Guess
-        </button>
-      </div>
-      </div>
-  );
-}
-
-function BullsAndCows() {
-  const [number, setNumber] = useState(randNum());
-  const [guesses, setGuesses] = useState([]);
 
   function resetGame(){
     setNumber(randNum());
@@ -94,7 +81,7 @@ function BullsAndCows() {
     setText('');
   }
 
-  function guess(text) {
+  function guess() {
     let check = passesChecks(text);
     if (check.value){
       let bullscows = findBC(number, text);
@@ -116,7 +103,21 @@ function BullsAndCows() {
   <div class="row">
   <div class="col-sm-8">
   <h1 class="display-4">Bulls and Cows</h1>
-  <InputControls guess={guess} resetGame={resetGame}/>
+  <div class="input-group mb-3">
+  <input type="text" class="form-control"
+    value={text}
+    onChange={updateText}
+    onKeyPress={keyPress}
+    placeholder="Type a four-digit number here"/>
+  <div class="input-group-append">
+    <button class="btn btn-outline-danger" onClick={resetGame} type="button">
+      Reset
+    </button>
+    <button class="btn btn-success" onClick={guess} type="button">
+      Guess
+    </button>
+  </div>
+  </div>
   <table class="table-striped">
     <thead class="thead-light">
       <tr>
