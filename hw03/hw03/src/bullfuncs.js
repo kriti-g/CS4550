@@ -28,20 +28,19 @@ export function passesChecks(text){
       if (text[0] !== "0"){
         let set = uniq(text.split(''));
         if (set.length === 4){
-          return true;
+          return {value: true, message: ""};
         } else {
-          alert("All digits must be unique.");
+          return {value: false, message: "All digits must be unique."}
         }
       } else {
-        alert("First digit cannot be 0.");
+        return {value: false, message: "First digit cannot be 0."};
       }
     } else {
-      alert("Need exactly 4 digits.");
+      return {value: false, message: "Need exactly 4 digits."};
     }
   } else {
-    alert("Numbers only please.");
+    return {value: false, message: "Numbers only please."};
   }
-  return false;
 }
 
 export function findBC(number, text){

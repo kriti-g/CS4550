@@ -1,6 +1,7 @@
 import React from 'react';
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'toastr';
 import { useState, useEffect } from 'react';
 import { uniq, randNum, passesChecks, findBC, hasWon } from './bullfuncs';
 import './App.css';
@@ -49,17 +50,8 @@ function GuessTable(props) {
     );
 }
 
-
-function BullsAndCows() {
-  const [number, setNumber] = useState(randNum());
-  const [guesses, setGuesses] = useState([]);
+function InputControls({guess, resetGame}) {
   const [text, setText] = useState('');
-
-  function resetGame(){
-    setNumber(randNum());
-    setGuesses([]);
-    setText('');
-  }
 
   function updateText(ev) {
     let vv = ev.target.value;
@@ -69,12 +61,42 @@ function BullsAndCows() {
 
   function keyPress(ev) {
     if (ev.key === "Enter") {
-      guess();
+      guess(text);
     }
   }
 
-  function guess() {
-    if (passesChecks(text)){
+  return (
+      <div class="input-group mb-3">
+      <input type="text" class="form-control"
+        value={text}
+        onChange={updateText}
+        onKeyPress={keyPress}
+        placeholder="Type a four-digit number here"/>
+      <div class="input-group-append">
+        <button class="btn btn-outline-danger" onClick={resetGame} type="button">
+          Reset
+        </button>
+        <button class="btn btn-success" onClick={guess(text)} type="button">
+          Guess
+        </button>
+      </div>
+      </div>
+  );
+}
+
+function BullsAndCows() {
+  const [number, setNumber] = useState(randNum());
+  const [guesses, setGuesses] = useState([]);
+
+  function resetGame(){
+    setNumber(randNum());
+    setGuesses([]);
+    setText('');
+  }
+
+  function guess(text) {
+    let check = passesChecks(text);
+    if (check.value){
       let bullscows = findBC(number, text);
       const newGuess = {
         key: guesses.length,
@@ -82,9 +104,11 @@ function BullsAndCows() {
         bulls: bullscows[0],
         cows: bullscows[1]
       }
-      let ng = uniq(guesses.concat(newGuess));
+      let ng = guesses.concat(newGuess);
       setGuesses(ng);
       setText('');
+    } else {
+      toastr.error(check.message);
     }
   }
 
@@ -92,21 +116,7 @@ function BullsAndCows() {
   <div class="row">
   <div class="col-sm-8">
   <h1 class="display-4">Bulls and Cows</h1>
-  <div class="input-group mb-3">
-  <input type="text" class="form-control"
-    value={text}
-    onChange={updateText}
-    onKeyPress={keyPress}
-    placeholder="Type a four-digit number here"/>
-  <div class="input-group-append">
-    <button class="btn btn-outline-danger" onClick={resetGame} type="button">
-      Reset
-    </button>
-    <button class="btn btn-success" onClick={guess} type="button">
-      Guess
-    </button>
-  </div>
-  </div>
+  <InputControls guess={guess} resetGame={resetGame}/>
   <table class="table-striped">
     <thead class="thead-light">
       <tr>
@@ -118,11 +128,14 @@ function BullsAndCows() {
   </table>
   </div>
   <div class="col-sm-4">
-  <p>
-    When you guess, the game will tell you how many bulls (B) and cows (C) you
-    got in that guess. A bull means the right number in the right place, and a
-     cow means the right number in the wrong place.
-  </p>
+  <ol>
+    <li>When you guess, the game will tell you how many bulls (B) and cows (C) you
+    got in that guess.</li>
+    <li>A bull means the right number in the right place, and a
+    cow means the right number in the wrong place.</li>
+    <li>A guess should not have duplicate digits or a starting 0.</li>
+    <li>You get a maximum of 8 guesses.</li>
+  </ol>
   <p>
      Good luck!
   </p>
@@ -136,7 +149,7 @@ function BullsAndCows() {
     body = (
       <GameOver number={number} onClick={resetGame}/>);
   }
-  console.log("toguess: "+ number);
+
   return (
     <div class="container p-3 my-3">
     {body}
