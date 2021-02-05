@@ -128,6 +128,7 @@ function BullsAndCows() {
   </table>
   </div>
   <div class="col-sm-4">
+  <h1 class="display-4"> </h1>
   <ol>
     <li>When you guess, the game will tell you how many bulls (B) and cows (C) you
     got in that guess.</li>
